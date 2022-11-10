@@ -13,15 +13,14 @@ app.get('/prueba', (req, respons) =>{
     respons.send('<h1>HOLA MUNDO</h1>')
 })
 
-app.get('/especialistas', (req, response) =>{
+app.get('/especialistas', (req, response) => {
     const queryObj = url.parse(req.url, true).query;
     const esp = (queryObj.q == undefined ? "psicologo" : queryObj.q);
     const ubicacion = queryObj.loc == undefined ? "monterrey" : queryObj.loc;
-    const pagina = queryObj.loc == undefined ? 1 : queryObj.pag;
-    console.log(ubicacion)
-    console.log(esp)
+    const pagina = queryObj.pag == undefined ? 1 : queryObj.pag;
     const _URL = "https://www.doctoralia.com.mx/buscar?q="+esp+"&loc="+ubicacion+"&page="+pagina;
-    console.log(_URL)
+    // console.log(_URL)
+    
     const especialistas = [];
     const especialistasAll = [];
     axios(_URL)
@@ -47,7 +46,7 @@ app.get('/especialistas', (req, response) =>{
         });
 
         if (urlEspecialista != "") {
-          axios(urlEspecialista).then((respose) => {
+            axios(urlEspecialista).then((respose) => {
             const html = respose.data;
             const $ = cheerio.load(html);
             let num = 1;
