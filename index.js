@@ -19,7 +19,7 @@ app.get('/especialistas', (req, response) => {
     const ubicacion = queryObj.loc == undefined ? "monterrey" : queryObj.loc;
     const pagina = queryObj.pag == undefined ? 1 : queryObj.pag;
     const _URL = "https://www.doctoralia.com.mx/buscar?q="+esp+"&loc="+ubicacion+"&page="+pagina;
-    console.log(_URL)
+    // console.log(_URL)
     
     const especialistas = [];
     const especialistasAll = [];
